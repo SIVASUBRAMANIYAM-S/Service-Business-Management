@@ -1,4 +1,4 @@
-import type { Business, Category, Service } from '@/types';
+import type { Booking, Business, Category, Service } from '@/types';
 
 // Static placeholder data so screens have something to render before
 // Phase 2 connects them to real Supabase tables.
@@ -26,3 +26,11 @@ export const SERVICES: Service[] = [
   { id: 'svc-2', businessId: 'biz-1', name: 'AC General Service', priceRupees: 500, durationMinutes: 45 },
   { id: 'svc-3', businessId: 'biz-3', name: 'Tap Repair', priceRupees: 300, durationMinutes: 30 },
 ];
+
+// A few preset slots to pick from on the placeholder booking screen.
+// Phase 2 replaces this with real business availability from Supabase.
+export const TIME_SLOTS = ['Today, 4:00 PM', 'Today, 6:30 PM', 'Tomorrow, 10:00 AM', 'Tomorrow, 2:00 PM'];
+
+// Empty on purpose — Phase 2 wires this up to a real `bookings` table so this
+// list reflects what the signed-in customer actually booked.
+export const BOOKINGS: Booking[] = [];
