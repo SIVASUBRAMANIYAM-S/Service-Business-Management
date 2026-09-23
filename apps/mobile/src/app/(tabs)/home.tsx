@@ -1,7 +1,8 @@
 import { router } from 'expo-router';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { Card } from '@/components/card';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { BottomTabInset, Spacing } from '@/constants/theme';
@@ -18,14 +19,12 @@ function CategorySection({ title, group }: { title: string; group: CategoryGroup
       </ThemedText>
       <View style={styles.grid}>
         {categories.map((category) => (
-          <Pressable
-            key={category.id}
-            style={styles.card}
-            onPress={() => router.push(`/services/${category.id}`)}
-          >
+          <Card key={category.id} style={styles.card} onPress={() => router.push(`/services/${category.id}`)}>
             <ThemedText style={styles.cardIcon}>{category.icon}</ThemedText>
-            <ThemedText type="smallBold">{category.name}</ThemedText>
-          </Pressable>
+            <ThemedText type="smallBold" style={styles.cardLabel}>
+              {category.name}
+            </ThemedText>
+          </Card>
         ))}
       </View>
     </View>
@@ -66,11 +65,10 @@ const styles = StyleSheet.create({
   card: {
     width: '30%',
     aspectRatio: 1,
-    backgroundColor: '#F0F0F3',
-    borderRadius: Spacing.three,
     alignItems: 'center',
     justifyContent: 'center',
     gap: Spacing.one,
   },
   cardIcon: { fontSize: 28 },
+  cardLabel: { textAlign: 'center' },
 });

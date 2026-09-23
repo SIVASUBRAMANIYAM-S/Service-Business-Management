@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { Card } from '@/components/card';
+import { PrimaryButton } from '@/components/primary-button';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Spacing } from '@/constants/theme';
@@ -42,25 +44,18 @@ export default function BookingScreen() {
         </ThemedText>
         <View style={styles.slotList}>
           {TIME_SLOTS.map((slot) => (
-            <Pressable
-              key={slot}
-              style={[styles.slot, selectedSlot === slot && styles.slotSelected]}
-              onPress={() => setSelectedSlot(slot)}
-            >
+            <Card key={slot} selected={selectedSlot === slot} onPress={() => setSelectedSlot(slot)}>
               <ThemedText type="smallBold">{slot}</ThemedText>
-            </Pressable>
+            </Card>
           ))}
         </View>
 
-        <Pressable
-          style={[styles.button, !selectedSlot && styles.buttonDisabled]}
+        <PrimaryButton
+          label="Confirm & Pay"
           disabled={!selectedSlot}
           onPress={handleConfirm}
-        >
-          <ThemedText type="default" style={styles.buttonText}>
-            Confirm &amp; Pay
-          </ThemedText>
-        </Pressable>
+          style={styles.confirmButton}
+        />
       </SafeAreaView>
     </ThemedView>
   );
@@ -77,19 +72,5 @@ const styles = StyleSheet.create({
   title: { fontSize: 26, lineHeight: 32 },
   sectionTitle: { fontSize: 20, lineHeight: 26, marginTop: Spacing.three },
   slotList: { gap: Spacing.two },
-  slot: {
-    backgroundColor: '#F0F0F3',
-    borderRadius: Spacing.two,
-    padding: Spacing.three,
-  },
-  slotSelected: { backgroundColor: '#D6E6FF' },
-  button: {
-    backgroundColor: '#3c87f7',
-    borderRadius: Spacing.two,
-    paddingVertical: Spacing.three,
-    alignItems: 'center',
-    marginTop: Spacing.four,
-  },
-  buttonDisabled: { opacity: 0.5 },
-  buttonText: { color: '#ffffff' },
+  confirmButton: { marginTop: Spacing.four },
 });

@@ -2,6 +2,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { Card } from '@/components/card';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Spacing } from '@/constants/theme';
@@ -33,16 +34,12 @@ export default function ServicesScreen() {
         ) : (
           <View style={styles.list}>
             {businesses.map((business) => (
-              <Pressable
-                key={business.id}
-                style={styles.card}
-                onPress={() => router.push(`/business/${business.id}`)}
-              >
+              <Card key={business.id} onPress={() => router.push(`/business/${business.id}`)}>
                 <ThemedText type="smallBold">{business.name}</ThemedText>
                 <ThemedText type="small" themeColor="textSecondary">
                   ★ {business.rating.toFixed(1)} · {business.distanceKm} km away
                 </ThemedText>
-              </Pressable>
+              </Card>
             ))}
           </View>
         )}
@@ -61,10 +58,4 @@ const styles = StyleSheet.create({
   },
   title: { fontSize: 26, lineHeight: 32 },
   list: { gap: Spacing.three },
-  card: {
-    backgroundColor: '#F0F0F3',
-    borderRadius: Spacing.three,
-    padding: Spacing.three,
-    gap: Spacing.half,
-  },
 });

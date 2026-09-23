@@ -1,7 +1,8 @@
 import { router } from 'expo-router';
-import { Pressable, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { PrimaryButton } from '@/components/primary-button';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { BottomTabInset, Spacing } from '@/constants/theme';
@@ -25,11 +26,7 @@ export default function ProfileScreen() {
         </ThemedText>
         <ThemedText themeColor="textSecondary">{email ?? 'Not signed in yet'}</ThemedText>
 
-        <Pressable style={styles.button} onPress={handleLogOut}>
-          <ThemedText type="default" style={styles.buttonText}>
-            Log out
-          </ThemedText>
-        </Pressable>
+        <PrimaryButton label="Log out" onPress={handleLogOut} variant="muted" style={styles.button} />
       </SafeAreaView>
     </ThemedView>
   );
@@ -46,13 +43,8 @@ const styles = StyleSheet.create({
   },
   title: { fontSize: 28, lineHeight: 34 },
   button: {
-    backgroundColor: '#3c87f7',
-    borderRadius: Spacing.two,
-    paddingVertical: Spacing.three,
-    alignItems: 'center',
     marginTop: Spacing.four,
     alignSelf: 'flex-start',
     paddingHorizontal: Spacing.four,
   },
-  buttonText: { color: '#ffffff' },
 });

@@ -1,8 +1,10 @@
 import { Link, router } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, StyleSheet, TextInput } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { PrimaryButton } from '@/components/primary-button';
+import { TextField } from '@/components/text-field';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Spacing } from '@/constants/theme';
@@ -28,26 +30,15 @@ export default function LoginScreen() {
         </ThemedText>
 
         <ThemedView type="backgroundElement" style={styles.form}>
-          <TextInput
+          <TextField
             placeholder="Email"
             autoCapitalize="none"
             keyboardType="email-address"
             value={email}
             onChangeText={setEmail}
-            style={styles.input}
           />
-          <TextInput
-            placeholder="Password"
-            secureTextEntry
-            value={password}
-            onChangeText={setPassword}
-            style={styles.input}
-          />
-          <Pressable style={styles.button} onPress={handleLogin}>
-            <ThemedText type="default" style={styles.buttonText}>
-              Log In
-            </ThemedText>
-          </Pressable>
+          <TextField placeholder="Password" secureTextEntry value={password} onChangeText={setPassword} />
+          <PrimaryButton label="Log In" onPress={handleLogin} />
         </ThemedView>
 
         <Link href="/(auth)/register" style={styles.link}>
@@ -72,19 +63,5 @@ const styles = StyleSheet.create({
     padding: Spacing.four,
     borderRadius: Spacing.three,
   },
-  input: {
-    backgroundColor: '#ffffff',
-    borderRadius: Spacing.two,
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.two + 4,
-    fontSize: 16,
-  },
-  button: {
-    backgroundColor: '#3c87f7',
-    borderRadius: Spacing.two,
-    paddingVertical: Spacing.three,
-    alignItems: 'center',
-  },
-  buttonText: { color: '#ffffff' },
   link: { alignSelf: 'center', marginTop: Spacing.two },
 });

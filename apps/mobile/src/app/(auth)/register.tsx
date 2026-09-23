@@ -1,8 +1,10 @@
 import { Link, router } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, StyleSheet, TextInput } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { PrimaryButton } from '@/components/primary-button';
+import { TextField } from '@/components/text-field';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Spacing } from '@/constants/theme';
@@ -25,27 +27,16 @@ export default function RegisterScreen() {
         </ThemedText>
 
         <ThemedView type="backgroundElement" style={styles.form}>
-          <TextInput placeholder="Full name" value={name} onChangeText={setName} style={styles.input} />
-          <TextInput
+          <TextField placeholder="Full name" value={name} onChangeText={setName} />
+          <TextField
             placeholder="Email"
             autoCapitalize="none"
             keyboardType="email-address"
             value={email}
             onChangeText={setEmail}
-            style={styles.input}
           />
-          <TextInput
-            placeholder="Password"
-            secureTextEntry
-            value={password}
-            onChangeText={setPassword}
-            style={styles.input}
-          />
-          <Pressable style={styles.button} onPress={handleRegister}>
-            <ThemedText type="default" style={styles.buttonText}>
-              Register
-            </ThemedText>
-          </Pressable>
+          <TextField placeholder="Password" secureTextEntry value={password} onChangeText={setPassword} />
+          <PrimaryButton label="Register" onPress={handleRegister} />
         </ThemedView>
 
         <Link href="/(auth)/login" style={styles.link}>
@@ -70,19 +61,5 @@ const styles = StyleSheet.create({
     padding: Spacing.four,
     borderRadius: Spacing.three,
   },
-  input: {
-    backgroundColor: '#ffffff',
-    borderRadius: Spacing.two,
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.two + 4,
-    fontSize: 16,
-  },
-  button: {
-    backgroundColor: '#3c87f7',
-    borderRadius: Spacing.two,
-    paddingVertical: Spacing.three,
-    alignItems: 'center',
-  },
-  buttonText: { color: '#ffffff' },
   link: { alignSelf: 'center', marginTop: Spacing.two },
 });

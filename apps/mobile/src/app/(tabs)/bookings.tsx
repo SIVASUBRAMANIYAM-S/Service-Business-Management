@@ -23,13 +23,13 @@ export default function BookingsScreen() {
         ) : (
           <View style={styles.list}>
             {BOOKINGS.map((booking) => (
-              <View key={booking.id} style={styles.card}>
+              <ThemedView key={booking.id} type="backgroundElement" style={styles.card}>
                 <ThemedText type="smallBold">{booking.serviceName}</ThemedText>
                 <ThemedText type="small" themeColor="textSecondary">
                   {booking.businessName} · {booking.scheduledAt}
                 </ThemedText>
                 <ThemedText type="small">{booking.status}</ThemedText>
-              </View>
+              </ThemedView>
             ))}
           </View>
         )}
@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
   title: { fontSize: 28, lineHeight: 34 },
   list: { gap: Spacing.three },
   card: {
-    backgroundColor: '#F0F0F3',
     borderRadius: Spacing.three,
     padding: Spacing.three,
     gap: Spacing.half,

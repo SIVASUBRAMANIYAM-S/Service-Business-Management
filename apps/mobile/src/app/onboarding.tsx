@@ -1,7 +1,8 @@
 import { router } from 'expo-router';
-import { Pressable, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { PrimaryButton } from '@/components/primary-button';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Spacing } from '@/constants/theme';
@@ -21,11 +22,11 @@ export default function OnboardingScreen() {
           business, choose a time, and pay online in a few taps.
         </ThemedText>
 
-        <Pressable style={styles.button} onPress={() => router.replace('/(auth)/login')}>
-          <ThemedText type="default" style={styles.buttonText}>
-            Get Started
-          </ThemedText>
-        </Pressable>
+        <PrimaryButton
+          label="Get Started"
+          onPress={() => router.replace('/(auth)/login')}
+          style={styles.button}
+        />
       </SafeAreaView>
     </ThemedView>
   );
@@ -42,12 +43,5 @@ const styles = StyleSheet.create({
   emoji: { fontSize: 48, textAlign: 'center', marginBottom: Spacing.three },
   title: { fontSize: 30, lineHeight: 36, textAlign: 'center' },
   subtitle: { textAlign: 'center' },
-  button: {
-    backgroundColor: '#3c87f7',
-    borderRadius: Spacing.two,
-    paddingVertical: Spacing.three,
-    alignItems: 'center',
-    marginTop: Spacing.four,
-  },
-  buttonText: { color: '#ffffff' },
+  button: { marginTop: Spacing.four },
 });
